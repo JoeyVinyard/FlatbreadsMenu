@@ -1,8 +1,43 @@
-body{
+p{
+    margin-bottom: 0;
+}
+.main{
+    background-color: #ffe6b2;
+    height: 100vh;
+    width: 100vw;
+}
+.header{
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 10px;
+}
+.menuItem{
+    margin-left: 5px;
+    font-size: 28px;
+}
+.item{
+    padding: 3px;    
+    font-size: 28px;
+    height: 30px;
+}
+.info{
+    font-size: 16px;
+    margin-left: 50px;
+}
+.identifier{
+    border: 1px solid black;
+    border-radius: 50%;
+    line-height: 48px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    vertical-align: middle;
+}
+/* body{
     margin: 0;
     padding: 0;
 }
 .menu{
     height: 100vh;
     width: 100vw;
-}
+} */

@@ -1,31 +1,37 @@
-let breakfastImages = ["rotation1", "rotation2", "rotation3"];
-let lunchImages = ["rotation1", "rotation2", "rotation3", "rotation4"];
-let currentLineup = [];
-let curFolder = "";
+const dayInMili = 86400000;
 
-let curImage = 0;
+let breakfastMenu = document.getElementById("breakfast");
+let lunchMenu = document.getElementById("lunch");
+let target = new Date();
+let now = new Date();
 
-let displayImage = document.getElementById("menu");
 
-setInterval(() => {
-    let curTime = new Date();
-    formattedTime = formatTime(curTime);
-    if(formattedTime < 1030){
-        currentLineup = breakfastImages;
-        curFolder = "breakfast";
-    } else {
-        currentLineup = lunchImages;
-        curFolder = "lunch";
-    }
-    curImage = curImage < currentLineup.length ? curImage + 1 : 1;
-    displayImage.src = `res/${curFolder}/rotation${curImage}.png`
-}, 1*1000)
+target.setHours(10,30,00);
+let diff = target.getTime() - now.getTime();
+if(diff < 0){
+    breakfastMenu.style.display="none";
+    lunchMenu.style.display="block";
+    diff += dayInMili;
+} else {
+    breakfastMenu.style.display="block";
+    lunchMenu.style.display="none";
+}
+setTimeout(showLunch, diff);
+target.setHours(22,30,00);
+diff = target.getTime() - now.getTime();
+if(diff < 0){
+    diff += dayInMili;
+}
+setTimeout(showBreakfast, diff);
 
-function formatTime(date){
-    let hours = date.getHours().toString();
-    let minutes = date.getMinutes().toString();
-    if(minutes.length == 1){
-        minutes = "0" + minutes;
-    }
-    return parseInt(hours + minutes);
+function showBreakfast(){
+    breakfastMenu.style.display="block";
+    lunchMenu.style.display="none";
+    setTimeout(showBreakfast, dayInMili);
+}
+
+function showLunch(){
+    breakfastMenu.style.display="none";
+    lunchMenu.style.display="block";
+    setTimeout(showLunch, dayInMili);
 }
